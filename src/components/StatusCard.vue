@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header text-center bg-secondary text-white" >
-      <h4>Neue Aufgaben</h4>
+      <h4>{{ title }}</h4>
     </div>
     <div class="card-body">
       <Task />
@@ -22,6 +22,12 @@ export default {
     Task,
     NewTask,
   },
+  props: {
+    title: String,
+    titleClasses: String,
+    newTasks: Boolean,
+    status: Number,
+  }
 };
 </script>
 
