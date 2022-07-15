@@ -32,7 +32,7 @@ export default {
       ],
     };
   },
-  computed: {
+  methods: {
     newTasks() {
       return this.tasks.filter((task) => task.status === 0);
     },
