@@ -1,55 +1,21 @@
 <template>
   <div class="container mt-5">
     <div class="row">
-      <div class="col-4">
-        <div class="card">
-          <div class="card-header text-center bg-secondary text-white">
-            <h4>Neue Aufgaben</h4>
-          </div>
-          <div class="card-body">
-            <div
-              class="alert alert-secondary"
-              v-for="task in newTasks"
-              :key="task.id"
-            >
-              {{ task.content }}
-            </div>
-          </div>
-          <div class="card-footer">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Neue Aufgabe"
-            />
-            <div class="d-grid my-2">
-              <button class="btn btn-secondary">Eintragen</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card">
-          <div class="card-header text-center bg-primary text-white">
-            <h4>In Bearbeitung</h4>
-          </div>
-          <div class="card-body"></div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card">
-          <div class="card-header text-center bg-success text-white">
-            <h4>Erledigt</h4>
-          </div>
-          <div class="card-body"></div>
-        </div>
+      <div class="col-4" v-for="i in 3" :key="i">
+        <StatusCard />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
+import StatusCard from "@/components/StatusCard.vue";
+
+export default {
   name: "App",
+  components: {
+    StatusCard,
+  },
   data() {
     return {
       tasks: [
@@ -74,7 +40,6 @@
 };
 </script>
 
-
 <style lang="scss">
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -95,5 +60,4 @@ body {
   margin: 0;
   padding: 0;
 }
-
 </style>
