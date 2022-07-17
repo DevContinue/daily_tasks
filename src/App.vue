@@ -4,9 +4,11 @@
       <div class="col-4" v-for="statusCard in statusCards" :key="statusCard.status">
         <StatusCard 
           :title="statusCard.title"
-          :titleClass="statusCard.titleClass"
+          :titleClasses="statusCard.titleClasses"
           :status="statusCard.status"
-          :newTasks="statusCard.newtasks"
+          :newTasks="statusCard.newTasks"
+          :tasks="filteredTasks(statusCard.status)"
+          @new-task="addTask"
         />
       </div>
     </div>
@@ -32,35 +34,44 @@ export default {
         {
           id: 2,
           content: "Anwendung auf Vue.js umstellen.",
-          status: 0,
+          status: 1,
+        },
+        {
+          id: 3,
+          content: "Vue.js Üben, Üben, Üben.",
+          status: 2,
         },
       ],
       statusCards: [
         {
-          title: "Neue Aufgabe",
+          title: "Neu Aufgabe",
           titleClasses: "bg-secondary text-white",
-          newtasks: true,
+          newTasks: true,
           status: 0,
         },
         {
           title: "In Bearbeitung",
           titleClasses: "bg-primary text-white",
-          newtasks: false,
+          newTasks: false,
           status: 1,
         },
         {
           title: "Erledigt",
           titleClasses: "bg-success text-white",
-          newtasks: false,
+          newTasks: false,
           status: 2,
-        }
-      ]
+        },
+      ],
     };
   },
   methods: {
-    newTasks() {
-      return this.tasks.filter((task) => task.status === 0);
+    filteredTasks(status) {
+      return this.tasks.filter((task) => task.status === status);
     },
+    addTask (task) {
+      task.id = Math.random();
+      this.tasks.push(task);
+    }
   },
 };
 </script>
@@ -73,7 +84,6 @@ body {
   width: 100%;
   height: 100%;
   background-color: $prime;
-  color: $text;
   font-size: 20px;
 
   display: flex;
@@ -84,5 +94,9 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.card {
+  min-width: 15rem;
 }
 </style>
